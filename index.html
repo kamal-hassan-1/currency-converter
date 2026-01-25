@@ -28,6 +28,47 @@
 				<h1>Currency Converter</h1>
 			</div>
 		</header>
+		<main>
+			<form>
+				<div class="conversion-box">
+					<p>
+						<label for="Currency1">Convert from: </label>
+						<select
+							name="Currency1"
+							id="Currency1"
+							class="currency-dropdown"></select>
+						<!-- options to be populated -->
+					</p>
+					<p>
+						<label for="Currency2">Convert to: </label>
+						<select
+							name="Currency2"
+							id="Currency2"
+							class="currency-dropdown"></select>
+						<!-- options to be populated -->
+					</p>
+				</div>
+				<div class="number-input">
+					<p>
+						<label for="amount">Amount: </label>
+						<input
+							type="number"
+							id="amount"
+							placeholder="Enter amount"
+							required />
+					</p>
+				</div>
+				<button
+					id="form-btn"
+					type="submit">
+					Convert
+				</button>
+			</form>
+			<div id="result">
+				<!-- conversion result to be displayed here -->
+				<h2 id="result-text"></h2>
+			</div>
+		</main>
 		<script src="script.js"></script>
 	</body>
 </html>
