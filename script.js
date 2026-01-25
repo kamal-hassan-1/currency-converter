@@ -1,3 +1,4 @@
+//--------------------------------------------------------------Helper Functions
 const fetchCurrencies = async () => {
 	try {
 		const response = await fetch("https://api.frankfurter.dev/v1/currencies");
@@ -20,6 +21,21 @@ const populateCurrencyDropdowns = async () => {
 		}
 	}
 };
+const convertCurrency = async (currency1, currency2, amount) => {
+	try {
+		const response = await fetch(`https://api.frankfurter.dev/v1/latest?base=${currency1}&symbols=${currency2}`);
+		const data = await response.json();
+		const rate = data.rates[currency2];
+		const convertedAmount = (amount * rate).toFixed(2);
+		return convertedAmount;
+	} catch (error) {
+		console.log("Error fetching exchange rates:", error);
+	}
+};
+
+//---------------------------------------------------------Execution starts here
+
+populateCurrencyDropdowns();
 const convertBtn = document.querySelector("#form-btn");
 let currency1;
 let currency2;
@@ -38,17 +54,3 @@ convertBtn.addEventListener("click", async (event) => {
 		alert("Please select two different currencies.");
 	}
 });
-
-const convertCurrency = async (currency1, currency2, amount) => {
-	try {
-		const response = await fetch(`https://api.frankfurter.dev/v1/latest?base=${currency1}&symbols=${currency2}`);
-		const data = await response.json();
-		const rate = data.rates[currency2];
-		const convertedAmount = (amount * rate).toFixed(2);
-		return convertedAmount;
-	} catch (error) {
-		console.log("Error fetching exchange rates:", error);
-	}
-};
-
-populateCurrencyDropdowns();
